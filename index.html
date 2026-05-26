@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đà Nẵng · 越南峴港行</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink-soft: #4a463f;
+    --ink-faded: #8a8479;
+    --paper: #f5f1e8;
+    --paper-warm: #ebe5d6;
+    --accent: #8b3a2f;
+    --accent-soft: #b85a47;
+    --line: #d4cdb8;
+    --highlight: #c89968;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif TC', 'Cormorant Garamond', serif;
+    font-weight: 300;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(139, 58, 47, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(200, 153, 104, 0.04) 0%, transparent 50%);
+  }
+
+  /* Subtle paper grain texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  header::after {
+    content: '✦';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper);
+    color: var(--accent);
+    padding: 0 16px;
+    font-size: 14px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 84px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    letter-spacing: 0.15em;
+  }
+
+  .date-range {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faded);
+    margin-top: 20px;
+    letter-spacing: 0.2em;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tab {
+    background: none;
+    border: none;
+    padding: 18px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink-faded);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+
+  .tab .tab-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.2em;
+  }
+
+  .tab .tab-label {
+    font-style: italic;
+  }
+
+  .tab:hover {
+    color: var(--ink);
+  }
+
+  .tab.active {
+    color: var(--accent);
+  }
+
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* Day content */
+  .day-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .day-content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .day-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .day-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faded);
+    letter-spacing: 0.3em;
+    margin-bottom: 12px;
+  }
+
+  .day-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .day-route {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+  }
+
+  .day-route .arrow {
+    color: var(--highlight);
+    margin: 0 8px;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .event {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    padding: 24px 0;
+    border-bottom: 1px dashed var(--line);
+    align-items: start;
+  }
+
+  .event:last-child {
+    border-bottom: none;
+  }
+
+  .event-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faded);
+    letter-spacing: 0.05em;
+    padding-top: 2px;
+    line-height: 1.6;
+  }
+
+  .event-time .time-range {
+    color: var(--ink-soft);
+  }
+
+  .event-body h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .event-body .description {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-right: 6px;
+    margin-bottom: 8px;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .badge.must-eat {
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+  }
+
+  .badge.tbd {
+    border-style: dashed;
+    color: var(--ink-faded);
+  }
+
+  .badge.booked {
+    background: var(--highlight);
+    color: var(--paper);
+    border-color: var(--highlight);
+  }
+
+  /* Options list */
+  .options {
+    margin-top: 12px;
+    padding-left: 16px;
+    border-left: 2px solid var(--paper-warm);
+  }
+
+  .option-item {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .option-item .option-label {
+    color: var(--ink-faded);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    margin-right: 8px;
+  }
+
+  /* Place links */
+  .place-link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    display: inline-block;
+    padding: 1px 0;
+  }
+
+  .place-link::after {
+    content: '↗';
+    margin-left: 4px;
+    font-size: 11px;
+    opacity: 0.6;
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+
+  .place-link:hover {
+    color: var(--accent-soft);
+    border-bottom-color: var(--accent-soft);
+  }
+
+  .place-link:hover::after {
+    transform: translate(2px, -2px);
+  }
+
+  .place-type {
+    color: var(--ink-faded);
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  /* Note style */
+  .day-note {
+    margin-top: 40px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.4);
+    border-left: 3px solid var(--highlight);
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  .day-note .note-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--highlight);
+    font-style: normal;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* Day 5 special */
+  .free-day {
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .free-day .symbol {
+    font-size: 48px;
+    color: var(--highlight);
+    margin-bottom: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  .free-day h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .free-day p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 16px;
+    line-height: 1.9;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faded);
+    letter-spacing: 0.2em;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 50px 24px 80px; }
+    h1 { font-size: 48px; }
+    .event {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 0;
+    }
+    .event-time { font-size: 11px; }
+    .tab { padding: 12px 14px; font-size: 14px; }
+    .tab .tab-num { font-size: 9px; }
+    .day-title { font-size: 28px; }
+    header { margin-bottom: 50px; padding-bottom: 40px; }
+    .tabs { margin-bottom: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <div class="eyebrow">A Travel Journal</div>
+    <h1>Đà Nẵng</h1>
+    <div class="subtitle">越 南 峴 港 行</div>
+    <div class="date-range">2026 · 05.27 — 05.31</div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-day="1" role="tab">
+      <span class="tab-num">DAY 01</span>
+      <span class="tab-label">抵 達</span>
+    </button>
+    <button class="tab" data-day="2" role="tab">
+      <span class="tab-num">DAY 02</span>
+      <span class="tab-label">會 安</span>
+    </button>
+    <button class="tab" data-day="3" role="tab">
+      <span class="tab-num">DAY 03</span>
+      <span class="tab-label">巴 拿 山</span>
+    </button>
+    <button class="tab" data-day="4" role="tab">
+      <span class="tab-num">DAY 04</span>
+      <span class="tab-label">市 區</span>
+    </button>
+    <button class="tab" data-day="5" role="tab">
+      <span class="tab-num">DAY 05</span>
+      <span class="tab-label">歸 程</span>
+    </button>
+  </nav>
+
+  <!-- Day 1 -->
+  <section class="day-content active" id="day-1">
+    <div class="day-header">
+      <div class="day-date">05 · 27 · WED</div>
+      <h2 class="day-title">Arrival</h2>
+      <div class="day-route">高 雄 <span class="arrow">→</span> 峴 港</div>
+    </div>
+
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">16:00 — 17:35</div>
+        </div>
+        <div class="event-body">
+          <h3>高雄 → 峴港機場</h3>
+          <p class="description">越南時間比台灣晚 1 小時</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">17:35 — 18:35</div>
+        </div>
+        <div class="event-body">
+          <h3>機場入境</h3>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">18:35 — 19:00</div>
+        </div>
+        <div class="event-body">
+          <h3>機場到飯店路上找金店換匯</h3>
+          <p class="description">金店匯率通常比機場好</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">19:00 — 19:30</div>
+        </div>
+        <div class="event-body">
+          <h3>飯店 Check-in</h3>
+          <p class="description">
+            <a href="https://maps.app.goo.gl/yvfDMcAjuVHf1CLW9?g_st=ic" target="_blank" class="place-link">Le Sand</a>
+            <span class="place-type">— 飯店</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">19:30 — 21:00</div>
+        </div>
+        <div class="event-body">
+          <h3>晚餐</h3>
+          <p class="description">
+            <a href="https://maps.app.goo.gl/T8n4Tcr1sPcrxJWD6?g_st=ic" target="_blank" class="place-link">海鮮餐廳</a>
+            <span class="place-type">— 越南海鮮料理</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">21:00 — 22:30</div>
+        </div>
+        <div class="event-body">
+          <h3>夜景小酌</h3>
+          <p class="description">
+            <a href="https://maps.app.goo.gl/e4QnKH95TTPwsFXCA?g_st=ic" target="_blank" class="place-link">Sky 36</a>
+            <span class="place-type">— 高空酒吧</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">22:30 — 24:30</div>
+        </div>
+        <div class="event-body">
+          <span class="badge tbd">待定</span>
+          <h3>全套</h3>
+          <p class="description">三選一</p>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">A.</span>
+              <a href="https://maps.app.goo.gl/SZj8QkZ6k1ooAmXe6?g_st=ic" target="_blank" class="place-link">New Sakura Massage Đà Nẵng</a>
+              <span class="place-type">— 按摩店</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">B.</span>
+              <a href="https://maps.app.goo.gl/GCeEumvsKpyP9Sx96?g_st=ic" target="_blank" class="place-link">Massage Sakura Đà Nẵng</a>
+              <span class="place-type">— 按摩店</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">C.</span>
+              <a href="https://maps.app.goo.gl/bDsR4zd5WFbEAJEq8?g_st=ic" target="_blank" class="place-link">Chill Place Hotel</a>
+              <span class="place-type">— 按摩店</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">01:00</div>
+        </div>
+        <div class="event-body">
+          <h3>回飯店</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 2 -->
+  <section class="day-content" id="day-2">
+    <div class="day-header">
+      <div class="day-date">05 · 28 · THU</div>
+      <h2 class="day-title">Hội An</h2>
+      <div class="day-route">峴 港 <span class="arrow">→</span> 會 安 <span class="arrow">→</span> 峴 港</div>
+    </div>
+
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">08:30 — 10:00</div>
+        </div>
+        <div class="event-body">
+          <h3>早餐</h3>
+          <p class="description">飯店自助</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">10:10 — 12:00</div>
+        </div>
+        <div class="event-body">
+          <span class="badge tbd">待定</span>
+          <h3>按摩</h3>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">A.</span>
+              <a href="https://maps.app.goo.gl/ATNkGJRYrmEMXqJPA?g_st=ic" target="_blank" class="place-link">帝王洗頭</a>
+              <span class="place-type">— 洗頭按摩 · 110 分鐘</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">B.</span>
+              <a href="https://www.google.com/maps/place/?q=place_id:ChIJp70f00YZQjERyPvSezHK3ns" target="_blank" class="place-link">Bubble Wash 다낭 버블 워시</a>
+              <span class="place-type">— 韓系洗頭 SPA(詹推薦)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">12:10 — 13:30</div>
+        </div>
+        <div class="event-body">
+          <h3>中餐</h3>
+          <p class="description">
+            <a href="https://maps.app.goo.gl/Qs1i77mtacU74Dv69?g_st=ic" target="_blank" class="place-link">牛肉河粉店</a>
+            <span class="place-type">— 牛肉河粉、越南煎餅</span>
+          </p>
+          <p class="description">
+            <a href="https://maps.app.goo.gl/tyQmSswECeXc7cqg9?g_st=ic" target="_blank" class="place-link">旁邊法國麵包店</a>
+            <span class="place-type">— 可順便買(如果要吃)</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">15:00 — 18:00</div>
+        </div>
+        <div class="event-body">
+          <h3>會安古城</h3>
+          <p class="description">Grab 車程約 1 小時</p>
+
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">☕</span>
+              <strong style="color: var(--ink); font-weight: 500; font-size: 13px;">會安咖啡廳(2 選 1):</strong>
+            </div>
+            <div class="option-item" style="padding-left: 24px;">
+              <a href="https://maps.app.goo.gl/ce6LLvTVBPkgkdem8?g_st=ic" target="_blank" class="place-link">咖啡廳 1</a>
+              <span class="place-type">— 咖啡廳</span>
+            </div>
+            <div class="option-item" style="padding-left: 24px;">
+              <a href="https://maps.app.goo.gl/mUTytDeh1X5tnYaj7?g_st=ic" target="_blank" class="place-link">咖啡廳 2</a>
+              <span class="place-type">— 咖啡廳</span>
+            </div>
+
+            <div class="option-item" style="margin-top: 12px;">
+              <span class="option-label">🍵</span>
+              <a href="https://maps.app.goo.gl/orudHw1BBdwzZyrR6?g_st=ic" target="_blank" class="place-link">檸檬香茅茶店</a>
+              <span class="place-type">— 飲品</span>
+            </div>
+
+            <div class="option-item" style="margin-top: 12px;">
+              <span class="option-label">🥖</span>
+              <strong style="color: var(--ink); font-weight: 500; font-size: 13px;">會安法國麵包(2 選 1):</strong>
+            </div>
+            <div class="option-item" style="padding-left: 24px;">
+              <a href="https://maps.app.goo.gl/eSnKZ8H6WF2sdGdj9?g_st=ic" target="_blank" class="place-link">法國麵包店</a>
+              <span class="place-type">— Bánh Mì</span>
+            </div>
+            <div class="option-item" style="padding-left: 24px;">
+              <a href="https://www.google.com/maps/place/?q=place_id:ChIJcyHeQ3kOQjERpyFTr0C_lkI" target="_blank" class="place-link">Madam Khánh - The Bánh Mì Queen</a>
+              <span class="place-type">— 法國麵包女王 · 會安名店</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">18:00 — 19:30</div>
+        </div>
+        <div class="event-body">
+          <span class="badge tbd">待定</span>
+          <h3>會安晚餐</h3>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">A.</span>
+              <a href="https://maps.app.goo.gl/m5aYow3wFUw1JgJN7?g_st=ic" target="_blank" class="place-link">Morning Glory</a>
+              <span class="place-type">— 越南料理(分店 1)</span>
+            </div>
+            <div class="option-item" style="padding-left: 36px;">
+              <a href="https://maps.app.goo.gl/ohiNVNX5ESVKG8xn9?g_st=ic" target="_blank" class="place-link">Morning Glory 分店 2</a>
+            </div>
+            <div class="option-item" style="padding-left: 36px;">
+              <a href="https://maps.app.goo.gl/ASvWd7xsNHyAhp9YA?g_st=ic" target="_blank" class="place-link">Morning Glory 分店 3</a>
+            </div>
+            <div class="option-item">
+              <span class="option-label">B.</span>
+              <a href="https://maps.app.goo.gl/scBBpJcrD7wZasEJA?g_st=ic" target="_blank" class="place-link">Secret Garden</a>
+              <span class="place-type">— 越南料理餐廳</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">20:30 — 21:30</div>
+        </div>
+        <div class="event-body">
+          <h3>回峴港</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 3 -->
+  <section class="day-content" id="day-3">
+    <div class="day-header">
+      <div class="day-date">05 · 29 · FRI</div>
+      <h2 class="day-title">Bà Nà Hills</h2>
+      <div class="day-route">峴 港 <span class="arrow">→</span> 巴 拿 山 <span class="arrow">→</span> 峴 港</div>
+    </div>
+
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">07:30 — 08:30</div>
+        </div>
+        <div class="event-body">
+          <h3>早餐</h3>
+          <p class="description">飯店自助</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">09:30 — 16:00</div>
+        </div>
+        <div class="event-body">
+          <span class="badge booked">已預訂</span>
+          <h3>巴拿山</h3>
+          <p class="description">接送 + 門票皆已預訂 · 車程約 1 小時</p>
+          <div class="options">
+            <div class="option-item">— 佛手橋(Golden Bridge)</div>
+            <div class="option-item">— 法國村</div>
+            <div class="option-item">— 午餐:山裡餐廳</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">17:00 — 19:30</div>
+        </div>
+        <div class="event-body">
+          <span class="badge must-eat">必吃</span>
+          <h3>晚餐</h3>
+          <p class="description">
+            <a href="https://maps.app.goo.gl/jNtPssbyxX7EuuRo8?g_st=ic" target="_blank" class="place-link">Pizza 4P's Hoàng Văn Thụ</a>
+            <span class="place-type">— Pizza 餐廳</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">19:40 — 23:00</div>
+        </div>
+        <div class="event-body">
+          <span class="badge tbd">待定</span>
+          <h3>薄紗 KTV</h3>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">A.</span>
+              <a href="https://maps.app.goo.gl/nXekNGimuALhn4CG9?g_st=ic" target="_blank" class="place-link">Las Vegas Karaoke</a>
+              <span class="place-type">— KTV</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">B.</span>
+              <a href="https://maps.app.goo.gl/Bdb2od9wedxwW9Ah8?g_st=ic" target="_blank" class="place-link">RAOKE ĐẢO XANH KTV</a>
+              <span class="place-type">— KTV</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">23:00 — 01:00</div>
+        </div>
+        <div class="event-body">
+          <span class="badge tbd">待定</span>
+          <h3>定點(全)</h3>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">A.</span>
+              <a href="https://maps.app.goo.gl/SZj8QkZ6k1ooAmXe6?g_st=ic" target="_blank" class="place-link">New Sakura Massage Đà Nẵng</a>
+              <span class="place-type">— 按摩店</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">B.</span>
+              <a href="https://maps.app.goo.gl/GCeEumvsKpyP9Sx96?g_st=ic" target="_blank" class="place-link">Massage Sakura Đà Nẵng</a>
+              <span class="place-type">— 按摩店</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">C.</span>
+              <a href="https://maps.app.goo.gl/bDsR4zd5WFbEAJEq8?g_st=ic" target="_blank" class="place-link">Chill Place Hotel</a>
+              <span class="place-type">— 按摩店</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">01:10</div>
+        </div>
+        <div class="event-body">
+          <h3>回飯店</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 4 -->
+  <section class="day-content" id="day-4">
+    <div class="day-header">
+      <div class="day-date">05 · 30 · SAT</div>
+      <h2 class="day-title">In the City</h2>
+      <div class="day-route">峴 港 市 區</div>
+    </div>
+
+    <div class="timeline">
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">09:00 — 10:00</div>
+        </div>
+        <div class="event-body">
+          <h3>早餐</h3>
+          <p class="description">飯店自助</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">10:00 — 11:30</div>
+        </div>
+        <div class="event-body">
+          <h3>市區觀光</h3>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">⛪</span>
+              <a href="https://maps.app.goo.gl/p63mJq5UpEk2MZFp8?g_st=ic" target="_blank" class="place-link">峴港粉紅教堂</a>
+              <span class="place-type">— 景點</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">🛍</span>
+              <a href="https://maps.app.goo.gl/WMD5ddKULcffcawL7?g_st=ic" target="_blank" class="place-link">Chợ Hàn</a>
+              <span class="place-type">— 漢市場</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">☕</span>
+              <a href="https://maps.app.goo.gl/YnjTEnCQ8Bv4E6FW8?g_st=ic" target="_blank" class="place-link">Cộng Cà Phê</a>
+              <span class="place-type">— 椰子咖啡</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">🎁</span>
+              <a href="https://maps.app.goo.gl/B3rzyoAWwCqPf52V8?g_st=ic" target="_blank" class="place-link">ALLUVIA CHOCOLATE</a>
+              <span class="place-type">— 伴手禮 · 巧克力</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">🎁</span>
+              <a href="https://maps.app.goo.gl/jvhKR1K5o3wPiDWD8?g_st=ic" target="_blank" class="place-link">Star Kitchen Souvenir</a>
+              <span class="place-type">— 伴手禮 · 綠豆糕、椰子餅乾</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">11:30 — 12:15</div>
+        </div>
+        <div class="event-body">
+          <h3>🛒 大型超市採購</h3>
+          <p class="description">45 分鐘快採:腰果、越南咖啡、果乾、椰子餅乾</p>
+          <p class="description">
+            <a href="https://www.google.com/maps/place/?q=place_id:ChIJ6ykCgUoYQjEREnB0G8qmVQE" target="_blank" class="place-link">GO! Big C Da Nang</a>
+            <span class="place-type">— 大型超市(就在貢市場對面)</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">12:15 — 14:30</div>
+        </div>
+        <div class="event-body">
+          <h3>中餐</h3>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">🍦</span>
+              <a href="https://maps.app.goo.gl/TCDoFEpeTEvPD2mH8?g_st=ic" target="_blank" class="place-link">Con Market Chợ Cồn</a>
+              <span class="place-type">— 貢市場 · 酪梨冰淇淋、順信米線</span>
+            </div>
+            <div class="option-item" style="margin-top: 8px;">
+              <span class="badge must-eat" style="margin-right: 8px;">必吃</span>
+              <a href="https://www.google.com/maps/place/?q=place_id:ChIJrSiIJ8oZQjERn2-PvhzOCuU" target="_blank" class="place-link">Bánh Xèo Bà Dưỡng</a>
+              <span class="place-type">— 峴港最有名越南煎餅</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">14:30 — 15:30</div>
+        </div>
+        <div class="event-body">
+          <h3>拿東西回飯店放</h3>
+          <p class="description">把伴手禮和戰利品放回飯店</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">16:00 — 18:00</div>
+        </div>
+        <div class="event-body">
+          <span class="badge booked">已預約</span>
+          <h3>💆 按摩(純)</h3>
+          <p class="description">
+            <a href="https://maps.app.goo.gl/JB6bv1ZAToKYPPaX9" target="_blank" class="place-link">Golden Lotus Oriental Organic Spa 2</a>
+            <span class="place-type">— 按摩店 · 76 Hùng Vương 市中心店</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">18:30 — 19:30</div>
+        </div>
+        <div class="event-body">
+          <span class="badge tbd">待定</span>
+          <h3>晚餐</h3>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">A.</span>
+              <a href="https://maps.app.goo.gl/vvBPQPRooTE1kXAU9?g_st=ic" target="_blank" class="place-link">Ăn Thôi</a>
+              <span class="place-type">— 越南料理</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">B.</span>
+              <a href="https://maps.app.goo.gl/dxsFx5iQg5CxJHWM8?g_st=ic" target="_blank" class="place-link">Nhà hàng NHÀ BẾP CHỢ HÀN</a>
+              <span class="place-type">— 越南料理</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">C.</span>
+              <a href="https://maps.app.goo.gl/RMkEmNR2syp8KaDc9?g_st=ic" target="_blank" class="place-link">Olivia's Prime Steakhouse</a>
+              <span class="place-type">— 牛排</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">20:00 — 22:00</div>
+        </div>
+        <div class="event-body">
+          <span class="badge booked">已訂座位</span>
+          <h3>🎆 國際煙火秀</h3>
+          <p class="description">提前走避開人潮</p>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">22:30 — 24:00</div>
+        </div>
+        <div class="event-body">
+          <span class="badge tbd">待定</span>
+          <h3>定點(0.3)</h3>
+          <p class="description">從煙火秀地點走路過去</p>
+          <div class="options">
+            <div class="option-item">
+              <span class="option-label">A.</span>
+              <a href="https://maps.app.goo.gl/n7uWnwb6VWy8uK6w5?g_st=ic" target="_blank" class="place-link">NEW LIFE SPA 다낭남자</a>
+              <span class="place-type">— 按摩店</span>
+            </div>
+            <div class="option-item">
+              <span class="option-label">B.</span>
+              <a href="https://maps.app.goo.gl/WNqri7KmgNoAZceE9?g_st=ic" target="_blank" class="place-link">Roliva</a>
+              <span class="place-type">— 按摩店</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">
+          <div class="time-range">24:20</div>
+        </div>
+        <div class="event-body">
+          <h3>回飯店</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 5 -->
+  <section class="day-content" id="day-5">
+    <div class="day-header">
+      <div class="day-date">05 · 31 · SUN</div>
+      <h2 class="day-title">Departure</h2>
+      <div class="day-route">峴 港 <span class="arrow">→</span> 高 雄</div>
+    </div>
+
+    <div class="free-day">
+      <div class="symbol">~</div>
+      <h3>隨機應變</h3>
+      <p>沒有預先安排,讓最後一天保持彈性。</p>
+      <p>可以選擇飯店泳池放空、最後一場按摩、市區漫步、買漏掉的伴手禮,或單純睡個飽。</p>
+      <p style="margin-top: 32px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-faded); letter-spacing: 0.2em;">— 依當天狀態彈性決定 —</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div>END OF JOURNEY</div>
+    <div style="margin-top: 8px;">✦  ✦  ✦</div>
+  </footer>
+
+</div>
+
+<script>
+  // Tab switching
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.day-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const day = tab.dataset.day;
+
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+
+      tab.classList.add('active');
+      document.getElementById(`day-${day}`).classList.add('active');
+
+      // Smooth scroll to content top on mobile
+      if (window.innerWidth < 640) {
+        document.querySelector('.tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
