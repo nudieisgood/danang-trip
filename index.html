@@ -51,7 +51,7 @@
   .container {
     max-width: 880px;
     margin: 0 auto;
-    padding: 80px 40px 120px;
+    padding: 50px 40px 120px;
     position: relative;
     z-index: 2;
   }
@@ -118,7 +118,7 @@
     display: flex;
     justify-content: center;
     gap: 0;
-    margin-bottom: 60px;
+    margin-bottom: 32px;
     flex-wrap: wrap;
     border-bottom: 1px solid var(--line);
   }
@@ -184,37 +184,41 @@
   }
 
   .day-header {
-    text-align: center;
-    margin-bottom: 60px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
   }
 
   .day-date {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--ink-faded);
-    letter-spacing: 0.3em;
-    margin-bottom: 12px;
+    letter-spacing: 0.25em;
   }
 
   .day-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
+    font-size: 22px;
     font-style: italic;
     font-weight: 300;
     color: var(--ink);
-    margin-bottom: 16px;
   }
 
   .day-route {
     font-family: 'Noto Serif TC', serif;
-    font-size: 15px;
+    font-size: 13px;
     color: var(--ink-soft);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
   }
 
   .day-route .arrow {
     color: var(--highlight);
-    margin: 0 8px;
+    margin: 0 6px;
   }
 
   /* Timeline */
@@ -418,7 +422,7 @@
 
   /* Responsive */
   @media (max-width: 640px) {
-    .container { padding: 50px 24px 80px; }
+    .container { padding: 30px 24px 80px; }
     h1 { font-size: 48px; }
     .event {
       grid-template-columns: 1fr;
@@ -428,23 +432,15 @@
     .event-time { font-size: 11px; }
     .tab { padding: 12px 14px; font-size: 14px; }
     .tab .tab-num { font-size: 9px; }
-    .day-title { font-size: 28px; }
-    header { margin-bottom: 50px; padding-bottom: 40px; }
-    .tabs { margin-bottom: 40px; }
+    .day-title { font-size: 20px; }
+    .day-header { margin-bottom: 24px; gap: 8px; }
+    .tabs { margin-bottom: 24px; }
   }
 </style>
 </head>
 <body>
 
 <div class="container">
-
-  <!-- Header -->
-  <header>
-    <div class="eyebrow">A Travel Journal</div>
-    <h1>Đà Nẵng</h1>
-    <div class="subtitle">越 南 峴 港 行</div>
-    <div class="date-range">2026 · 05.27 — 05.31</div>
-  </header>
 
   <!-- Tabs -->
   <nav class="tabs" role="tablist">
